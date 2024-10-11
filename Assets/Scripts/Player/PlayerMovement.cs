@@ -58,25 +58,27 @@ public class PlayerMovement : GameBehaviour
 
         StateSelect();
         StateMachine();
+        HandleTap();
     }
 
     void StateSelect()
     {
-        // Dash takes the highest priority
-        if (_dashInput && !isDashing && _energy.Value >= dashCost)
-        {
-            state = PlayerState.Dash;
-        }
-        // Tap action has second priority
-        else if (_tapInput.Value > 0 && _energy.Value >= tapCost)
-        {
-            state = PlayerState.Tap;
-        }
-        // Slide has third priority
-        else if (_slideInput && !isSliding && currentSpeed > slideTreshold)
+        // Slide has first priority
+        if (_slideInput && !isSliding && currentSpeed > slideTreshold)
         {
             state = PlayerState.Slide;
         }
+        // Dash takes the second priority
+        else if (_dashInput && !isDashing && _energy.Value >= dashCost)
+        {
+            state = PlayerState.Dash;
+        }
+        //// Tap action has third priority
+        //else if (_tapInput.Value > 0 && _energy.Value >= tapCost)
+        //{
+        //    state = PlayerState.Tap;
+        //}
+
         // Movement states (Run, Walk, Idle) come after
         else if (_movementInputs.Value.magnitude > 0)
         {
@@ -172,22 +174,27 @@ public class PlayerMovement : GameBehaviour
 
     void HandleSlideState()
     {
+        
+        
+        
+        
+        Debug.Log("Sliding called");
         // Start sliding if input is pressed and speed exceeds threshold
-        if (!_slideInput && currentSpeed > slideTreshold && slideCoroutine == null)
+        if (_slideInput && currentSpeed > slideTreshold && slideCoroutine == null)
         {
             Debug.Log("Started Sliding");
             isSliding = true;
             slideCoroutine = StartCoroutine(KineticSlide());
         }
 
-        if (isSliding)
+        if (_slideInput)
         {
             // Apply sliding friction
             currentSpeed = Mathf.Max(currentSpeed - slideFriction * Time.deltaTime, 0);
             transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
 
             // Stop sliding when speed is 0 or input is released
-            if (currentSpeed <= 0 || !_slideInput)
+            if (!_slideInput || currentSpeed <= 0)
             {
                 Debug.Log("Slide is attempting to end");
                 isSliding = false;
@@ -196,32 +203,16 @@ public class PlayerMovement : GameBehaviour
                 Debug.Log("Slide has Stopped");
             }
         }
-    
-        //Debug.Log("Is sliding");
-        //isSliding = true;
-        //slideCoroutine = StartCoroutine(KineticSlide());
+        else
+        {
+            Debug.Log("Slide is attempting to end");
+            isSliding = false;
+            StopCoroutine(slideCoroutine);
+            slideCoroutine = null;  // Reset the coroutine
+            Debug.Log("Slide has Stopped");
+        }
 
-        //if(isSliding)
-        //{
-        //    // Stop sliding when speed is 0 or input is released
-        //    if (currentSpeed <= 0 || !_slideInput)
-        //    {
-
-        //        if (slideCoroutine != null)
-        //        {
-        //            Debug.Log("Slide is attempting to end");
-        //            //isSliding = false;
-        //            isSliding = false;
-        //            StopCoroutine(slideCoroutine);
-        //            Debug.Log("Slide has Stopped");
-        //        }
-        //    }
-        //}
-
-        //// Apply sliding friction
-        //Debug.Log("Sliding Logic is used");
-        //currentSpeed = Mathf.Max(currentSpeed - slideFriction * Time.deltaTime, 0);
-        //transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
+        
     }
 
         void HandleTapState()
@@ -272,11 +263,20 @@ public class PlayerMovement : GameBehaviour
 
     void HandleTap()
     {
-        Vector3 dashDirection = _movementInputs.Value.normalized;
-        currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
-        transform.position += dashDirection * tapSpeedBoost;
-        _energy.Value -= tapCost;
-        _tapInput.Value = 0;
+        if (_movementInputs.Value.magnitude > 0)
+        {
+            if (_tapInput.Value > 0)
+            {
+                if (_energy.Value >= tapCost)
+                {
+                    Vector3 dashDirection = _movementInputs.Value.normalized;
+                    currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
+                    transform.position += dashDirection * tapSpeedBoost;
+                    _energy.Value -= tapCost;
+                    _tapInput.Value = 0;
+                }
+            }
+        }
     }
 
     void HandleMovement()
