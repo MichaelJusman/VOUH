@@ -4,7 +4,7 @@ using UnityEngine;
 using Obvious.Soap;
 using Unity.VisualScripting;
 
-public class PlayerInputs : MonoBehaviour
+public class PlayerInputs : GameBehaviour
 {
     [Header("Movement")]
     [SerializeField] private Vector3Variable _movementInput;

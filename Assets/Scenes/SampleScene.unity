@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd4ebd2f071dec4fafc162f58fc3785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   _movementInputs: {fileID: 11400000, guid: 21732807686255c45844e0802114b2d8, type: 2}
   _dashInput: {fileID: 11400000, guid: d7f7c8426e4375c49904a958b0f3babc, type: 2}
   _slideInput: {fileID: 11400000, guid: 0227035b8b496b540adff995e8e4fb70, type: 2}
@@ -258,7 +259,8 @@ MonoBehaviour:
   _dash: {fileID: 11400000, guid: cd132709b3ba95f40a9eca18d624ab29, type: 2}
   dashDecay: 3
   dashCost: 10
-  dashDuration: 1
+  dashDuration: 0.3
+  dashDirection: {x: 0, y: 0, z: 0}
   isSliding: 0
   _kineticSlideInterval: {fileID: 11400000, guid: 0a863d0395471c04dbdc834326174fe7, type: 2}
   slideTreshold: 7
@@ -280,7 +282,7 @@ MonoBehaviour:
   _dashInput: {fileID: 11400000, guid: d7f7c8426e4375c49904a958b0f3babc, type: 2}
   _slideInput: {fileID: 11400000, guid: 0227035b8b496b540adff995e8e4fb70, type: 2}
   _tapInput: {fileID: 11400000, guid: 8cf3f13aec1b7d646a7ad843558fe5d4, type: 2}
-  tapTreshold: 1
+  tapTreshold: 0.2
   movementKeyTimer: 0
   isMovementKeyHeld: 0
 --- !u!1 &554902962
