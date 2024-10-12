@@ -38,6 +38,9 @@ public class PlayerInputs : GameBehaviour
             if(movementKeyTimer <= tapTreshold)
             {
                 _tapInput.Value = 1;
+
+                ExecuteAfterFrames(3, ()=> _tapInput.Value = 0);
+                
             }
             else
             {

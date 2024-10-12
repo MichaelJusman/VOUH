@@ -31,6 +31,7 @@ public class PlayerMovement : GameBehaviour
     [SerializeField] private float _tapSpeedBoost;
     [SerializeField] private float _tapCost;
     [SerializeField] private float _tapDuration;
+    private Coroutine tapCoroutine;
 
     [Header("Dash")]
     [SerializeField] private bool _isDashing = false;
@@ -58,11 +59,18 @@ public class PlayerMovement : GameBehaviour
         StateSelect();
         StateMachine();
         //HandleTap();
+
+        if (_movementInputs.Value.magnitude > 0)
+        {
+            // Rotate the player to face the movement direction
+            Quaternion targetRotation = Quaternion.LookRotation(_movementInputs.Value);
+            transform.rotation = targetRotation;
+        }
     }
 
     void StateSelect()
     {
-        transform.rotation = Quaternion.LookRotation(_movementInputs.Value);
+        
         //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         // Slide has first priority
         if (_slideInput && !_isSliding && _speedCurrent > _speedRunTreshold)
@@ -74,7 +82,7 @@ public class PlayerMovement : GameBehaviour
         {
             state = PlayerState.Dash;
         }
-        else if (_tapInput.Value > 0 && _energy.Value >= _tapCost)
+        else if (_tapInput.Value > 0 && !_isTapping && _energy.Value >= _tapCost)
         {
             state = PlayerState.Tap;
         }
@@ -212,8 +220,12 @@ public class PlayerMovement : GameBehaviour
     {
         if (!_isTapping)
         {
+            //dashDirection = _movementInputs.Value.magnitude > 0
+            //? transform.TransformDirection(_movementInputs.Value.normalized)
+            //: transform.forward;
             _isTapping = true;
-            StartCoroutine(Tap());
+            tapCoroutine = StartCoroutine(Tap());
+            _energy.Value -= _tapCost;
         }
     }
     void HandleTap()
@@ -247,7 +259,7 @@ public class PlayerMovement : GameBehaviour
             //}
 
             // Continue moving in the dash direction
-            transform.position += dashDirection * _speedCurrent * Time.deltaTime;
+            transform.position += transform.forward * _speedCurrent * Time.deltaTime;
             tapTime += Time.deltaTime;
             yield return null;  // Wait for the next frame
         }
