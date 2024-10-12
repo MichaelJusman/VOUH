@@ -1,9 +1,10 @@
 using Obvious.Soap;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public enum PlayerState { Idle, Walk, Run, Dash, Slide, Tap, Warp}
+    public enum PlayerState { Idle, Walk, Run, Dash, Slide, Tap}
 public class PlayerMovement : GameBehaviour
 {
     [Header("State Machine")]
@@ -19,32 +20,33 @@ public class PlayerMovement : GameBehaviour
     [SerializeField] private FloatVariable _energy;
 
     [Header("Speed Variables")]
-    [SerializeField] private float currentSpeed;
+    [SerializeField] private float _speedCurrent;
     [SerializeField] private FloatVariable _speedMax;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float decceleration;
+    [SerializeField] private float _speedAcceleration;
+    [SerializeField] private float _speedDeceleration;
+    [SerializeField] private float _speedRunTreshold;
 
-    [Header("Speed Variables")]
-    [SerializeField] private float tapSpeedBoost;
-    [SerializeField] private float tapCost;
+    [Header("Tap Dash")]
+    [SerializeField] private bool _isTapping = false;
+    [SerializeField] private float _tapSpeedBoost;
+    [SerializeField] private float _tapCost;
+    [SerializeField] private float _tapDuration;
 
     [Header("Dash")]
-    [SerializeField] private bool isDashing = false;
+    [SerializeField] private bool _isDashing = false;
     [SerializeField] private FloatVariable _dash;
-    [SerializeField] private float dashDecay;
-    [SerializeField] private float dashCost;
-    [SerializeField] private float dashDuration;
+    [SerializeField] private float _dashCost;
+    [SerializeField] private float _dashDuration;
     [SerializeField] private Vector3 dashDirection;
     private Coroutine dashCoroutine;
 
     [Header("Slide")]
-    [SerializeField] private bool isSliding = false;
+    [SerializeField] private bool _isSliding = false;
     [SerializeField] private FloatVariable _kineticSlideInterval;
-    [SerializeField] private float slideTreshold;
-    [SerializeField] private float slideFriction;
+    [SerializeField] private float _slideFriction;
     [SerializeField] private FloatVariable _slideEnergyRegen;
-    public Coroutine slideCoroutine;
-    private float slideTimeElapsed;
+    [SerializeField] private float slideTimeElapsed;
+    private Coroutine slideCoroutine;
 
     private void Start()
     {
@@ -53,45 +55,40 @@ public class PlayerMovement : GameBehaviour
 
     private void Update()
     {
-        //HandleMovement();
-        //HandleDash();
-        //HandleSliding();
-
         StateSelect();
         StateMachine();
-        HandleTap();
+        //HandleTap();
     }
 
     void StateSelect()
     {
+        transform.rotation = Quaternion.LookRotation(_movementInputs.Value);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         // Slide has first priority
-        if (_slideInput && !isSliding && currentSpeed > slideTreshold)
+        if (_slideInput && !_isSliding && _speedCurrent > _speedRunTreshold)
         {
             state = PlayerState.Slide;
         }
         // Dash takes the second priority
-        else if (_dashInput && !isDashing && _energy.Value >= dashCost)
+        else if (_dashInput && !_isDashing && _energy.Value >= _dashCost)
         {
             state = PlayerState.Dash;
         }
-        //// Tap action has third priority
-        //else if (_tapInput.Value > 0 && _energy.Value >= tapCost)
-        //{
-        //    state = PlayerState.Tap;
-        //}
-
+        else if (_tapInput.Value > 0 && _energy.Value >= _tapCost)
+        {
+            state = PlayerState.Tap;
+        }
         // Movement states (Run, Walk, Idle) come after
         else if (_movementInputs.Value.magnitude > 0)
         {
-            if (currentSpeed < slideTreshold && !_slideInput)
+            if (_speedCurrent < _speedRunTreshold && !_slideInput)
             {
                 state = PlayerState.Walk;
 
-                
             }
             else
             {
-                if(!isDashing && !_slideInput)
+                if(!_isDashing && !_slideInput)
                 {
                     state = PlayerState.Run;
                 }
@@ -131,42 +128,38 @@ public class PlayerMovement : GameBehaviour
             case PlayerState.Tap: 
                 HandleTapState();
                 break;
-
-            case PlayerState.Warp: 
-
-                break;
         }
     }
 
     void HandleIdleState()
     {
-        currentSpeed = Mathf.Max(currentSpeed - decceleration * Time.deltaTime, 0);
+        _speedCurrent = Mathf.Max(_speedCurrent - _speedDeceleration * Time.deltaTime, 0);
     }
 
     void HandleWalkState()
     {
-        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, _speedMax);
-        transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
+        _speedCurrent = Mathf.Min(_speedCurrent + _speedAcceleration * Time.deltaTime, _speedMax);
+        transform.position += _movementInputs.Value * _speedCurrent * Time.deltaTime;
     }
 
     void HandleRunState()
     {
-        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, _speedMax);
-        transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
+        _speedCurrent = Mathf.Min(_speedCurrent + _speedAcceleration * Time.deltaTime, _speedMax);
+        transform.position += _movementInputs.Value * _speedCurrent * Time.deltaTime;
         //run anim
         //run particles
     }
 
     void HandleDashState()
     {
-        if (!isDashing)
+        if (!_isDashing)
         {
             // Capture the direction when dash starts
             dashDirection = _movementInputs.Value.magnitude > 0 ? _movementInputs.Value.normalized : transform.forward;
 
-            isDashing = true;
+            _isDashing = true;
             dashCoroutine = StartCoroutine(Dash());
-            _energy.Value -= dashCost;
+            _energy.Value -= _dashCost;
         }
 
         //dash anim
@@ -180,18 +173,18 @@ public class PlayerMovement : GameBehaviour
         if (_slideInput)
         {
             // Apply sliding friction
-            currentSpeed = Mathf.Max(currentSpeed - slideFriction * Time.deltaTime, 0);
-            transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
+            _speedCurrent = Mathf.Max(_speedCurrent - _slideFriction * Time.deltaTime, 0);
+            transform.position += _movementInputs.Value * _speedCurrent * Time.deltaTime;
 
             slideTimeElapsed += Time.deltaTime;
-            if (slideTimeElapsed >= _kineticSlideInterval && currentSpeed > 0)
+            if (slideTimeElapsed >= _kineticSlideInterval && _speedCurrent > 0)
             {
                 _energy.Value += _slideEnergyRegen;
                 slideTimeElapsed = 0f;  // Reset timer after regenerating energy
             }
 
             // Stop sliding when speed is 0
-            if (currentSpeed <= 0)
+            if (_speedCurrent <= 0)
             {
                 Debug.Log("Slide is attempting to end due to speed reaching 0");
                 StopSliding();
@@ -217,116 +210,66 @@ public class PlayerMovement : GameBehaviour
 
     void HandleTapState()
     {
-        Vector3 dashDirection = _movementInputs.Value.normalized;
-        currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
-        transform.position += dashDirection * tapSpeedBoost;
-        _energy.Value -= tapCost;
-        _tapInput.Value = 0;
-    }
-
-    void HandleIdle()
-    {
-        if(!isSliding) { currentSpeed = Mathf.Max(currentSpeed - decceleration * Time.deltaTime, 0); }
-    }
-
-    void HandleWalk()
-    {
-        if (_movementInputs.Value.magnitude > 0)
+        if (!_isTapping)
         {
-            if (_tapInput.Value > 0)
-            {
-                if (_energy.Value >= tapCost)
-                {
-                    Vector3 dashDirection = _movementInputs.Value.normalized;
-                    currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
-                    transform.position += dashDirection * tapSpeedBoost;
-                    _energy.Value -= tapCost;
-                    _tapInput.Value = 0;
-                }
-            }
-
-            if (!isDashing)
-            {
-                currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, _speedMax);
-            }
-
+            _isTapping = true;
+            StartCoroutine(Tap());
         }
-        else if (!isSliding)
-        {
-            //Speed Decay
-            currentSpeed = Mathf.Max(currentSpeed - decceleration * Time.deltaTime, 0);
-        }
-
-        //Apply Movement
-        transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
     }
-
     void HandleTap()
     {
         if (_movementInputs.Value.magnitude > 0)
         {
             if (_tapInput.Value > 0)
             {
-                if (_energy.Value >= tapCost)
+                if (_energy.Value >= _tapCost)
                 {
                     Vector3 dashDirection = _movementInputs.Value.normalized;
-                    currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
-                    transform.position += dashDirection * tapSpeedBoost;
-                    _energy.Value -= tapCost;
+                    _speedCurrent = Mathf.Min(_speedCurrent + _tapSpeedBoost, _speedMax);
+                    transform.position += dashDirection * _tapSpeedBoost;
+                    _energy.Value -= _tapCost;
                     _tapInput.Value = 0;
                 }
             }
         }
     }
 
-    void HandleMovement()
+    IEnumerator Tap()
     {
-        if(_movementInputs.Value.magnitude > 0)
+        _speedCurrent += _tapSpeedBoost;
+        float tapTime = 0;
+        while(tapTime < _tapDuration)
         {
-            if(_tapInput.Value > 0)
-            {
-                if(_energy.Value >= tapCost)
-                {
-                    Vector3 dashDirection = _movementInputs.Value.normalized;
-                    currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
-                    transform.position += dashDirection * tapSpeedBoost;
-                    _energy.Value -= tapCost;
-                    _tapInput.Value = 0;
-                }
-            }
+            // Allow new inputs during the dash
+            //if (_movementInputs.Value.magnitude < 0)
+            //{
+            //    dashDirection = _movementInputs.Value.normalized;
+            //}
 
-            if(!isDashing)
-            {
-                currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, _speedMax);
-            }
-            
-        }
-        else if(!isSliding)
-        {
-            //Speed Decay
-            currentSpeed = Mathf.Max(currentSpeed - decceleration * Time.deltaTime, 0);
+            // Continue moving in the dash direction
+            transform.position += dashDirection * _speedCurrent * Time.deltaTime;
+            tapTime += Time.deltaTime;
+            yield return null;  // Wait for the next frame
         }
 
-        //Apply Movement
-        transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
+        _isTapping = false;
+
+        if (_speedCurrent > _speedMax)
+        {
+            _speedCurrent = Mathf.Min(_speedCurrent + _tapSpeedBoost, _speedMax);
+
+        }
     }
 
-    void HandleDash()
-    {
-        if(_dashInput && !isDashing && _energy.Value >= dashCost)
-        {
-            dashCoroutine = StartCoroutine(Dash());
-            _energy.Value -= dashCost;
-        }
-    }
+
 
     IEnumerator Dash()
     {
         Debug.Log("Dash Started");
         // Maintain initial direction but allow movement inputs
-        currentSpeed += _dash;
+        _speedCurrent += _dash;
         float dashTime = 0;
-        while (dashTime < dashDuration)
+        while (dashTime < _dashDuration)
         {
             // Allow new inputs during the dash
             if (_movementInputs.Value.magnitude < 0)
@@ -335,55 +278,19 @@ public class PlayerMovement : GameBehaviour
             }
 
             // Continue moving in the dash direction
-            transform.position += dashDirection * currentSpeed * Time.deltaTime;
+            transform.position += dashDirection * _speedCurrent * Time.deltaTime;
             dashTime += Time.deltaTime;
             yield return null;  // Wait for the next frame
         }
 
-        isDashing = false;
+        _isDashing = false;
 
         // Decay speed to max speed after dashing
-        if (currentSpeed > _speedMax)
+        if (_speedCurrent > _speedMax)
         {
-            currentSpeed = Mathf.Min(currentSpeed + _dash, _speedMax);
+            _speedCurrent = Mathf.Min(_speedCurrent + _dash, _speedMax);
 
         }
         Debug.Log("Dash Ended");
-    }
-
-    void HandleSliding()
-    {
-        if(currentSpeed > slideTreshold && _slideInput && !isSliding)
-        {
-            isSliding = true;
-            slideCoroutine = StartCoroutine(KineticSlide());
-        }
-
-        if(isSliding)
-        {
-            currentSpeed = Mathf.Max(currentSpeed - slideFriction * Time.deltaTime, 0);
-
-            if (currentSpeed <= 0) // Stop sliding when speed is 0
-            {
-                isSliding = false;
-                StopCoroutine(slideCoroutine);
-            }
-
-            if (!_slideInput) // Stop sliding when the key is released
-            {
-                isSliding = false;
-                StopCoroutine(slideCoroutine);
-            }
-        }
-    }
-
-    IEnumerator KineticSlide()
-    {
-        while(isSliding && currentSpeed > 0)
-        {
-            _energy.Value += _slideEnergyRegen;
-
-            yield return new WaitForSeconds(_kineticSlideInterval);
-        }
     }
 }
