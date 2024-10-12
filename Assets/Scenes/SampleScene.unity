@@ -131,10 +131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 107517965}
-  - component: {fileID: 107517967}
   - component: {fileID: 107517966}
   m_Layer: 0
-  m_Name: ProtoPlayer
+  m_Name: PlayerLegs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,14 +147,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107517961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 143095589}
   - {fileID: 1072854629}
-  m_Father: {fileID: 0}
+  - {fileID: 487042281}
+  m_Father: {fileID: 532650982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &107517966
 MonoBehaviour:
@@ -194,25 +193,6 @@ MonoBehaviour:
   _slideFriction: 3
   _slideEnergyRegen: {fileID: 11400000, guid: 8c87cdaf8c3924f4f8fe7668eabedb64, type: 2}
   slideTimeElapsed: 0
---- !u!114 &107517967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107517961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a8864881405a2458c938de7560da92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementInput: {fileID: 11400000, guid: 21732807686255c45844e0802114b2d8, type: 2}
-  _dashInput: {fileID: 11400000, guid: d7f7c8426e4375c49904a958b0f3babc, type: 2}
-  _slideInput: {fileID: 11400000, guid: 0227035b8b496b540adff995e8e4fb70, type: 2}
-  _tapInput: {fileID: 11400000, guid: 8cf3f13aec1b7d646a7ad843558fe5d4, type: 2}
-  tapTreshold: 0.2
-  movementKeyTimer: 0
-  isMovementKeyHeld: 0
 --- !u!1 &143095588
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,12 +220,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143095588}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.438, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.43799996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 107517965}
+  m_Father: {fileID: 487042281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &143095590
 BoxCollider:
@@ -318,6 +298,103 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143095588}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &487042280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487042281}
+  - component: {fileID: 487042282}
+  m_Layer: 0
+  m_Name: PlayerTorso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &487042281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487042280}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 143095589}
+  m_Father: {fileID: 107517965}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487042282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487042280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc81f2a4f4f8834285f09191a2eedee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &532650981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 532650982}
+  - component: {fileID: 532650983}
+  m_Layer: 0
+  m_Name: ProtoPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &532650982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532650981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 107517965}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532650983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532650981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a8864881405a2458c938de7560da92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementInput: {fileID: 11400000, guid: 21732807686255c45844e0802114b2d8, type: 2}
+  _dashInput: {fileID: 11400000, guid: d7f7c8426e4375c49904a958b0f3babc, type: 2}
+  _slideInput: {fileID: 11400000, guid: 0227035b8b496b540adff995e8e4fb70, type: 2}
+  _tapInput: {fileID: 11400000, guid: 8cf3f13aec1b7d646a7ad843558fe5d4, type: 2}
+  tapTreshold: 0.2
+  movementKeyTimer: 0
+  isMovementKeyHeld: 0
 --- !u!1 &554902962
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,4 +1062,4 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 554902968}
-  - {fileID: 107517965}
+  - {fileID: 532650982}
