@@ -43,7 +43,8 @@ public class PlayerMovement : GameBehaviour
     [SerializeField] private float slideTreshold;
     [SerializeField] private float slideFriction;
     [SerializeField] private FloatVariable _slideEnergyRegen;
-    private Coroutine slideCoroutine;
+    public Coroutine slideCoroutine;
+    private float slideTimeElapsed;
 
     private void Start()
     {
@@ -174,18 +175,7 @@ public class PlayerMovement : GameBehaviour
 
     void HandleSlideState()
     {
-        
-        
-        
-        
         Debug.Log("Sliding called");
-        // Start sliding if input is pressed and speed exceeds threshold
-        if (_slideInput && currentSpeed > slideTreshold && slideCoroutine == null)
-        {
-            Debug.Log("Started Sliding");
-            isSliding = true;
-            slideCoroutine = StartCoroutine(KineticSlide());
-        }
 
         if (_slideInput)
         {
@@ -193,29 +183,39 @@ public class PlayerMovement : GameBehaviour
             currentSpeed = Mathf.Max(currentSpeed - slideFriction * Time.deltaTime, 0);
             transform.position += _movementInputs.Value * currentSpeed * Time.deltaTime;
 
-            // Stop sliding when speed is 0 or input is released
-            if (!_slideInput || currentSpeed <= 0)
+            slideTimeElapsed += Time.deltaTime;
+            if (slideTimeElapsed >= _kineticSlideInterval && currentSpeed > 0)
             {
-                Debug.Log("Slide is attempting to end");
-                isSliding = false;
-                StopCoroutine(slideCoroutine);
-                slideCoroutine = null;  // Reset the coroutine
-                Debug.Log("Slide has Stopped");
+                _energy.Value += _slideEnergyRegen;
+                slideTimeElapsed = 0f;  // Reset timer after regenerating energy
+            }
+
+            // Stop sliding when speed is 0
+            if (currentSpeed <= 0)
+            {
+                Debug.Log("Slide is attempting to end due to speed reaching 0");
+                StopSliding();
             }
         }
         else
         {
-            Debug.Log("Slide is attempting to end");
-            isSliding = false;
-            StopCoroutine(slideCoroutine);
-            slideCoroutine = null;  // Reset the coroutine
-            Debug.Log("Slide has Stopped");
+            // Stop sliding when input is released
+            Debug.Log("Slide is attempting to end due to input release");
+            StopSliding();
         }
-
-        
     }
 
-        void HandleTapState()
+    void StopSliding()
+    {
+        if (slideCoroutine != null)
+        {
+            StopCoroutine(slideCoroutine);
+            slideCoroutine = null;
+            Debug.Log("Slide has stopped");
+        }
+    }
+
+    void HandleTapState()
     {
         Vector3 dashDirection = _movementInputs.Value.normalized;
         currentSpeed = Mathf.Min(currentSpeed + tapSpeedBoost, _speedMax);
@@ -379,12 +379,9 @@ public class PlayerMovement : GameBehaviour
 
     IEnumerator KineticSlide()
     {
-        while(isSliding)
+        while(isSliding && currentSpeed > 0)
         {
-            if(_movementInputs.Value.magnitude > 0)
-            {
-                _energy.Value += _slideEnergyRegen;
-            }
+            _energy.Value += _slideEnergyRegen;
 
             yield return new WaitForSeconds(_kineticSlideInterval);
         }
