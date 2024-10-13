@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
-  m_Name: Float_player_speedCurrent
+  m_Name: Float_player_runTresold
   m_EditorClassIdentifier: 
   TagIndex: 0
   Description: 
-  _guid: 0a2912d024303ca4fa7d2793223e6b18
+  _guid: fa76914306ff33041b6734fecd2a4b4e
   _saveGuid: 0
-  _value: 10
+  _value: 7
   _debugLogEnabled: 0
   _saved: 0
   _defaultValue: 0

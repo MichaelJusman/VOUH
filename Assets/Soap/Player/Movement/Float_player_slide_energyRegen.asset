@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
-  m_Name: Float_player_dash
+  m_Name: Float_player_slide_energyRegen
   m_EditorClassIdentifier: 
   TagIndex: 0
   Description: 
-  _guid: cd132709b3ba95f40a9eca18d624ab29
+  _guid: 8c87cdaf8c3924f4f8fe7668eabedb64
   _saveGuid: 0
-  _value: 10
+  _value: 1
   _debugLogEnabled: 0
   _saved: 0
   _defaultValue: 0
   _resetOn: 0
-  _runtimeValue: 10
+  _runtimeValue: 0.2
   _isClamped: 0
   _minMax: {x: 0, y: 3.4028235e+38}
