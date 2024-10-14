@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private FloatVariable _Tenacity;
     [SerializeField] private FloatVariable _Blessing;
     [SerializeField] private FloatVariable _Freedom;
-    [SerializeField] private FloatVariable _Boldness;
+    [SerializeField] private FloatVariable _Audacity;
 
     [Header("Primary Stats")]
     [SerializeField] private FloatVariable _maxHealth;
@@ -44,14 +44,18 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private FloatVariable _maxAmmoPerFreedom;
     [SerializeField] private FloatVariable _ammoMultiplierPerFreedom;
     [SerializeField] private FloatVariable _magnetRadiusPerFreedom;
-    [SerializeField] private FloatVariable _retaliatePerBoldness;
-    [SerializeField] private FloatVariable _armorPerBoldness;
-    [SerializeField] private FloatVariable _shieldKnockbackPerBoldness;
+    [SerializeField] private FloatVariable _retaliatePerAudacity;
+    [SerializeField] private FloatVariable _armorPerAudacity;
+    [SerializeField] private FloatVariable _shieldKnockbackPerAudacity;
 
 
     private void Start()
     {
         _Vigor.OnValueChanged += OnVigorGain;
+        _Tenacity.OnValueChanged += OnTenacityGain;
+        _Blessing.OnValueChanged += OnBlessingGain;
+        _Freedom.OnValueChanged += OnFreedomGain;
+        _Audacity.OnValueChanged += OnAudacityGain;
     }
 
     void OnVigorGain(float newVal)
@@ -62,6 +66,50 @@ public class PlayerStats : MonoBehaviour
         if(_Vigor.Value % 5 == 0)
         {
             _vampirism.Value += _vampirismPerVigor;
+        }
+    }
+
+    void OnTenacityGain(float newVal)
+    {
+        _maxEnergy.Value += _maxEnergyPerTenacity;
+        _energyRegen.Value += _energyRegenPerTenacity;
+
+        if(_Tenacity.Value % 5 == 0)
+        {
+            _topSpeed.Value += _topSpeedPerTenacity;
+        }
+    }
+
+    void OnBlessingGain(float newVal)
+    {
+        _maxMana.Value += _maxManaPerBlessing;
+        _manaRegen.Value += _manaRegenPerBlessing;
+
+        if(_Blessing.Value % 5 == 0)
+        {
+            _leech.Value += _leechPerBlessing;
+        }
+    }
+
+    void OnFreedomGain(float newVal)
+    {
+        _maxAmmo.Value += _maxAmmoPerFreedom;
+        _ammoMultiplier.Value += _ammoMultiplierPerFreedom;
+
+        if(_Freedom.Value % 5 == 0)
+        {
+            _magnetRadius.Value += _magnetRadiusPerFreedom;
+        }
+    }
+
+    void OnAudacityGain(float newVal)
+    {
+        _retaliate.Value += _retaliatePerAudacity;
+        _armor.Value += _armorPerAudacity;
+
+        if(_Audacity.Value % 5 == 0)
+        {
+            _shieldKnockback.Value += _shieldKnockbackPerAudacity;
         }
     }
 }
