@@ -1185,7 +1185,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 5b53c3b4e3966554bbbe6938e8904987, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 869fcba9cc99a3b46b35722c4311a58a, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: +
   Suffix: 
@@ -2065,7 +2065,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 5b53c3b4e3966554bbbe6938e8904987, type: 2}
+  _floatVariable: {fileID: 11400000, guid: e7aa230383ac8df47b5b91db295b06a1, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: +
   Suffix: 
@@ -2781,7 +2781,6 @@ GameObject:
   - component: {fileID: 911047804}
   - component: {fileID: 911047807}
   - component: {fileID: 911047806}
-  - component: {fileID: 911047805}
   m_Layer: 5
   m_Name: Ammo_Fill
   m_TagString: Untagged
@@ -2808,23 +2807,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &911047805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911047803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba1bd61ff5f85b642a175fc402fe4bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _floatVariable: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
-  _maxValue:
-    UseLocal: 0
-    LocalValue: 0
-    Variable: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
 --- !u!114 &911047806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3524,7 +3506,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
+  _floatVariable: {fileID: 11400000, guid: e96814271847d69488d295b52291fb1b, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -3758,7 +3740,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 7ca095bc7726b954b8591ab14f4b1294, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -3917,7 +3899,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 9bd5bc5e4008f74449c4fe241809501f, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -4235,7 +4217,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 67ed1c71cc662304e8d47f1079292bde, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -4425,7 +4407,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+      - m_Target: {fileID: 11400000, guid: 67ed1c71cc662304e8d47f1079292bde, type: 2}
         m_TargetAssemblyTypeName: Obvious.Soap.FloatVariable, Obvious.Soap
         m_MethodName: Add
         m_Mode: 4
@@ -4559,7 +4541,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+      - m_Target: {fileID: 11400000, guid: 9bd5bc5e4008f74449c4fe241809501f, type: 2}
         m_TargetAssemblyTypeName: Obvious.Soap.FloatVariable, Obvious.Soap
         m_MethodName: Add
         m_Mode: 4
@@ -4796,7 +4778,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 1dcb50f3094f7694586f56222e16c00a, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -4955,7 +4937,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 5b53c3b4e3966554bbbe6938e8904987, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 448c61694b1bb504a82f1a9c6ee82d42, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: x
   Suffix: 
@@ -5114,7 +5096,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 3701dd8d1e04eaf4589cd93767b36ebd, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -5270,11 +5252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1bd61ff5f85b642a175fc402fe4bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floatVariable: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
+  _floatVariable: {fileID: 11400000, guid: e96814271847d69488d295b52291fb1b, type: 2}
   _maxValue:
     UseLocal: 0
     LocalValue: 0
-    Variable: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
+    Variable: {fileID: 11400000, guid: f4d45683f79f4bf40a7cee03d339f865, type: 2}
 --- !u!114 &1730443148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,7 +5507,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 5cdec905e696e7a49aabbe3cb5df3f65, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -5684,7 +5666,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+  _floatVariable: {fileID: 11400000, guid: ed0c2fa3190f62649994f629bc20d51c, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -5800,6 +5782,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1883023107}
   - component: {fileID: 1883023108}
+  - component: {fileID: 1883023112}
+  - component: {fileID: 1883023111}
+  - component: {fileID: 1883023110}
   - component: {fileID: 1883023109}
   m_Layer: 0
   m_Name: PlayerResources
@@ -5851,40 +5836,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Vigor: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
-  _Tenacity: {fileID: 0}
-  _Blessing: {fileID: 0}
-  _Freedom: {fileID: 0}
-  _Boldness: {fileID: 0}
+  _Tenacity: {fileID: 11400000, guid: 9bd5bc5e4008f74449c4fe241809501f, type: 2}
+  _Blessing: {fileID: 11400000, guid: 67ed1c71cc662304e8d47f1079292bde, type: 2}
+  _Freedom: {fileID: 11400000, guid: 1dcb50f3094f7694586f56222e16c00a, type: 2}
+  _Audacity: {fileID: 11400000, guid: ed0c2fa3190f62649994f629bc20d51c, type: 2}
   _maxHealth: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
   _healthRegen: {fileID: 11400000, guid: 5b53c3b4e3966554bbbe6938e8904987, type: 2}
-  _maxEnergy: {fileID: 0}
-  _energyRegen: {fileID: 0}
-  _maxMana: {fileID: 0}
-  _manaRegen: {fileID: 0}
-  _maxAmmo: {fileID: 0}
-  _ammoMultiplier: {fileID: 0}
-  _retaliate: {fileID: 0}
-  _armor: {fileID: 0}
+  _maxEnergy: {fileID: 11400000, guid: 3701dd8d1e04eaf4589cd93767b36ebd, type: 2}
+  _energyRegen: {fileID: 11400000, guid: e7aa230383ac8df47b5b91db295b06a1, type: 2}
+  _maxMana: {fileID: 11400000, guid: f4d45683f79f4bf40a7cee03d339f865, type: 2}
+  _manaRegen: {fileID: 11400000, guid: 869fcba9cc99a3b46b35722c4311a58a, type: 2}
+  _maxAmmo: {fileID: 11400000, guid: 7ca095bc7726b954b8591ab14f4b1294, type: 2}
+  _ammoMultiplier: {fileID: 11400000, guid: 448c61694b1bb504a82f1a9c6ee82d42, type: 2}
+  _retaliate: {fileID: 11400000, guid: 80e16ccb52bef94469554e387804b332, type: 2}
+  _armor: {fileID: 11400000, guid: 9f911b57aa29ca14cb722f01212a2d38, type: 2}
   _vampirism: {fileID: 11400000, guid: e5618e504d8556245ad683de3382b331, type: 2}
-  _topSpeed: {fileID: 0}
-  _leech: {fileID: 0}
-  _magnetRadius: {fileID: 0}
-  _shieldKnockback: {fileID: 0}
+  _topSpeed: {fileID: 11400000, guid: 0a2912d024303ca4fa7d2793223e6b18, type: 2}
+  _leech: {fileID: 11400000, guid: 4d79c530e68d07d409c8bf1c51034870, type: 2}
+  _magnetRadius: {fileID: 11400000, guid: 66637a6f4d82fb2419b83045f9d3ab5c, type: 2}
+  _shieldKnockback: {fileID: 11400000, guid: dda425b449684814da0a2dd6db1d2c0e, type: 2}
   _maxHealthPerVigor: {fileID: 11400000, guid: 6ee520c09d2da80439b353f3f1806483, type: 2}
   _healthRegenPerVigor: {fileID: 11400000, guid: 4dc2d20bd1f96f74b9b9150cf8d6f6b9, type: 2}
   _vampirismPerVigor: {fileID: 11400000, guid: 7dc2b6d2ea5cd7344b9cf454e97d2179, type: 2}
-  _maxEnergyPerTenacity: {fileID: 0}
-  _energyRegenPerTenacity: {fileID: 0}
-  _topSpeedPerTenacity: {fileID: 0}
-  _maxManaPerBlessing: {fileID: 0}
-  _manaRegenPerBlessing: {fileID: 0}
-  _leechPerBlessing: {fileID: 0}
-  _maxAmmoPerFreedom: {fileID: 0}
-  _ammoMultiplierPerFreedom: {fileID: 0}
-  _magnetRadiusPerFreedom: {fileID: 0}
-  _retaliatePerBoldness: {fileID: 0}
-  _armorPerBoldness: {fileID: 0}
-  _shieldKnockbackPerBoldness: {fileID: 0}
+  _maxEnergyPerTenacity: {fileID: 11400000, guid: 505e063139df77e44a909c13285cc5da, type: 2}
+  _energyRegenPerTenacity: {fileID: 11400000, guid: c267573f234578a42a3f2266eaeb27fb, type: 2}
+  _topSpeedPerTenacity: {fileID: 11400000, guid: 0d1d197bdce55f544b218ccfadfcc372, type: 2}
+  _maxManaPerBlessing: {fileID: 11400000, guid: b1d93841d614bc3479cbd7036a5a26c2, type: 2}
+  _manaRegenPerBlessing: {fileID: 11400000, guid: f573df96c7903364cbb5234d98fb6ac0, type: 2}
+  _leechPerBlessing: {fileID: 11400000, guid: bda511c8a5c70b94d9d851b78814c218, type: 2}
+  _maxAmmoPerFreedom: {fileID: 11400000, guid: 158f60727c02ad34f9d515dc95f21d2b, type: 2}
+  _ammoMultiplierPerFreedom: {fileID: 11400000, guid: c6cb08aae7dd27e45acc19379fcc861c, type: 2}
+  _magnetRadiusPerFreedom: {fileID: 11400000, guid: 56f793abc370e234b8023e93bdd852f2, type: 2}
+  _retaliatePerAudacity: {fileID: 11400000, guid: d127aad07f6a4344a862d28b9fa5a7f1, type: 2}
+  _armorPerAudacity: {fileID: 11400000, guid: 07ed3538d6367414f931a0a4ba90d76a, type: 2}
+  _shieldKnockbackPerAudacity: {fileID: 11400000, guid: c6b5877cefa06e940aaf8dbdb83ee661, type: 2}
+--- !u!114 &1883023110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883023106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91aa4b7179569ef44885db380e42a074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoMax: {fileID: 11400000, guid: 7ca095bc7726b954b8591ab14f4b1294, type: 2}
+  _ammoCurrent: {fileID: 11400000, guid: 3a63f9d0138937b44b26c2d1d4ef342c, type: 2}
+  _ammoMult: {fileID: 11400000, guid: 448c61694b1bb504a82f1a9c6ee82d42, type: 2}
+--- !u!114 &1883023111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883023106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1631cb47864165448a5a600d14b6bdf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manaMax: {fileID: 11400000, guid: f4d45683f79f4bf40a7cee03d339f865, type: 2}
+  _manaCurrent: {fileID: 11400000, guid: e96814271847d69488d295b52291fb1b, type: 2}
+  _manaRegen: {fileID: 11400000, guid: 869fcba9cc99a3b46b35722c4311a58a, type: 2}
+--- !u!114 &1883023112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883023106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6db6c56c0591cd4182721a3bdeb5254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _energyMax: {fileID: 11400000, guid: 3701dd8d1e04eaf4589cd93767b36ebd, type: 2}
+  _energyCurrent: {fileID: 11400000, guid: 5cdec905e696e7a49aabbe3cb5df3f65, type: 2}
+  _energyRegen: {fileID: 11400000, guid: e7aa230383ac8df47b5b91db295b06a1, type: 2}
 --- !u!1 &1913753976
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,7 +5968,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
+  _floatVariable: {fileID: 11400000, guid: f4d45683f79f4bf40a7cee03d339f865, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -6262,7 +6292,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+      - m_Target: {fileID: 11400000, guid: 1dcb50f3094f7694586f56222e16c00a, type: 2}
         m_TargetAssemblyTypeName: Obvious.Soap.FloatVariable, Obvious.Soap
         m_MethodName: Add
         m_Mode: 4
@@ -6365,7 +6395,7 @@ MonoBehaviour:
   Type: 3
   _boolVariable: {fileID: 0}
   _intVariable: {fileID: 0}
-  _floatVariable: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 3a63f9d0138937b44b26c2d1d4ef342c, type: 2}
   _stringVariable: {fileID: 0}
   Prefix: 
   Suffix: 
@@ -6596,11 +6626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1bd61ff5f85b642a175fc402fe4bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floatVariable: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
+  _floatVariable: {fileID: 11400000, guid: 5cdec905e696e7a49aabbe3cb5df3f65, type: 2}
   _maxValue:
     UseLocal: 0
     LocalValue: 0
-    Variable: {fileID: 11400000, guid: 59bb8a606f0baa5449e8627a89742bcc, type: 2}
+    Variable: {fileID: 11400000, guid: 3701dd8d1e04eaf4589cd93767b36ebd, type: 2}
 --- !u!114 &2105715247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6723,7 +6753,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 6a6ad15d02624cc42aa8cbd7179c2f7c, type: 2}
+      - m_Target: {fileID: 11400000, guid: ed0c2fa3190f62649994f629bc20d51c, type: 2}
         m_TargetAssemblyTypeName: Obvious.Soap.FloatVariable, Obvious.Soap
         m_MethodName: Add
         m_Mode: 4

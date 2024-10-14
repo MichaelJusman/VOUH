@@ -4,9 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : GameBehaviour
 {
-    [Header("Health")]
     [SerializeField] private FloatVariable _healthMax;
     [SerializeField] private FloatVariable _healthCurrent;
     [SerializeField] private FloatVariable _healthRegen;

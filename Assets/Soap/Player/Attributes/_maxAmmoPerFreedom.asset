@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
-  m_Name: _healthRegenPerVigor
+  m_Name: _maxAmmoPerFreedom
   m_EditorClassIdentifier: 
   TagIndex: 0
   Description: 
-  _guid: 4dc2d20bd1f96f74b9b9150cf8d6f6b9
+  _guid: 158f60727c02ad34f9d515dc95f21d2b
   _saveGuid: 0
-  _value: 0.4
+  _value: 16
   _debugLogEnabled: 0
   _saved: 0
   _defaultValue: 0
   _resetOn: 0
-  _runtimeValue: 0.2
+  _runtimeValue: 0
   _isClamped: 0
   _minMax: {x: 0, y: 3.4028235e+38}
