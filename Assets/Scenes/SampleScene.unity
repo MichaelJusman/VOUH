@@ -6120,7 +6120,7 @@ MonoBehaviour:
   _healthCurrent: {fileID: 11400000, guid: 92679ff168fd40b4584465411ededb93, type: 2}
   _healthRegen: {fileID: 11400000, guid: 5b53c3b4e3966554bbbe6938e8904987, type: 2}
   _armor: {fileID: 11400000, guid: 9f911b57aa29ca14cb722f01212a2d38, type: 2}
-  armorMultiplier: 1.2
+  armorMultiplier: 0.02
   _onPlayerDamaged: {fileID: 11400000, guid: 1d8fd09d613f5454284a4874f052d918, type: 2}
   _onPlayerHealed: {fileID: 11400000, guid: e7b956a42bc4e794e98a8b4cc5b5ce0c, type: 2}
   _onPlayerArmorBlock: {fileID: 11400000, guid: 2ae297f985451d74fae0c75e7d304917, type: 2}

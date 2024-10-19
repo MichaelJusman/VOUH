@@ -62,15 +62,13 @@ public class PlayerHealth : GameBehaviour
 
     float DamageCalculation(float damage)
     {
+        Debug.Log("Damage before armor reduction is " + damage);
         float reduction = (damage * Mathf.Pow((1 - armorMultiplier), _armor));
-        float roundedReduction = Mathf.Round(reduction);
-
-        float damageTaken = Mathf.RoundToInt(damage - roundedReduction);
-        if (damageTaken > 0)
-        {
-            _onPlayerArmorBlock.Raise((int)damageTaken);
-        }
-        Debug.Log("Damage after armor reduction is " +damageTaken);
+        float damageTaken = Mathf.RoundToInt(reduction);
+        _onPlayerArmorBlock.Raise((int)damageTaken);
+        Debug.Log("Damage after armor reduction is " + reduction + " rounded as " + damageTaken);
+        float reducedDamage = Mathf.RoundToInt(damage - damageTaken);
+        Debug.Log("Damage reduced is " + reducedDamage);
         return damageTaken;
     }
 
