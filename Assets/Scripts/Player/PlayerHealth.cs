@@ -70,8 +70,8 @@ public class PlayerHealth : GameBehaviour
         {
             _onPlayerArmorBlock.Raise((int)damageTaken);
         }
-
-            return damageTaken;
+        Debug.Log("Damage after armor reduction is " +damageTaken);
+        return damageTaken;
     }
 
     void OnHealed(float heal)
@@ -91,6 +91,11 @@ public class PlayerHealth : GameBehaviour
     {
         _onPlayerDeath.Raise();
         isDead = true;
+    }
+
+    public void TakeDmage(int val)
+    {
+        _healthCurrent.Add(- val);
     }
 
 
