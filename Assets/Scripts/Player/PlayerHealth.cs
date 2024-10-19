@@ -9,6 +9,9 @@ public class PlayerHealth : GameBehaviour
     [SerializeField] private FloatVariable _healthMax;
     [SerializeField] private FloatVariable _healthCurrent;
     [SerializeField] private FloatVariable _healthRegen;
+    [SerializeField] private float regenInterval = 1;
+    [SerializeField] private float regentimer = 0;
+
     [SerializeField] private FloatVariable _armor;
     [SerializeField] private float armorMultiplier;
 
@@ -30,6 +33,28 @@ public class PlayerHealth : GameBehaviour
         _healthCurrent.OnValueChanged -= OnHealthChanged;
     }
 
+    private void Update()
+    {
+        if(_healthCurrent < _healthMax && !isDead)
+        {
+
+            HealthRegen();
+        }
+    }
+
+    void HealthRegen()
+    {
+        if(regentimer >= regenInterval)
+        {
+            _healthCurrent.Value += _healthRegen;
+            regentimer = 0;
+        }
+        else
+        {
+            regentimer += Time.deltaTime;
+        }
+    }
+
     private void OnHealthChanged(float newValue)
     {
         var diff = newValue - _healthCurrent;
@@ -40,7 +65,7 @@ public class PlayerHealth : GameBehaviour
         }
         else
         {
-            OnHealed(diff);
+            _onPlayerHealed.Raise(Mathf.RoundToInt(diff));
         }
     }
 
@@ -50,7 +75,7 @@ public class PlayerHealth : GameBehaviour
         {
             if (_healthCurrent <= 0 && !isDead)
             {
-                OnDeath();
+                _onPlayerDeath.Raise();
             }
             else
             {
@@ -65,10 +90,14 @@ public class PlayerHealth : GameBehaviour
         Debug.Log("Damage before armor reduction is " + damage);
         float reduction = (damage * Mathf.Pow((1 - armorMultiplier), _armor));
         float damageTaken = Mathf.RoundToInt(reduction);
-        _onPlayerArmorBlock.Raise((int)damageTaken);
         Debug.Log("Damage after armor reduction is " + reduction + " rounded as " + damageTaken);
         float reducedDamage = Mathf.RoundToInt(damage - damageTaken);
         Debug.Log("Damage reduced is " + reducedDamage);
+        if(reducedDamage > 0)
+        {
+            _onPlayerArmorBlock.Raise((int)damageTaken);
+        }
+
         return damageTaken;
     }
 
@@ -80,14 +109,14 @@ public class PlayerHealth : GameBehaviour
         }
         else
         {
-            _onPlayerHealed.Raise(Mathf.RoundToInt(heal));
+            _healthCurrent.Add(heal);
+            
         }
         
     }
 
     void OnDeath()
     {
-        _onPlayerDeath.Raise();
         isDead = true;
     }
 

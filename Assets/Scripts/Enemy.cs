@@ -3,8 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : GameBehaviour
+
+public abstract class Enemy : GameBehaviour
 {
+    [SerializeField] private float damage;
+    [SerializeField] private float speed;
+    [SerializeField] private FloatVariable _roundMultiplier;
+
+    [Header("Events")]
     [SerializeField] private ScriptableEventInt _onEnemyHitPlayer;
 
     private void OnTriggerEnter(Collider other)
@@ -13,7 +19,7 @@ public class Enemy : GameBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("player collided with enemy");
-            _onEnemyHitPlayer.Raise(5);
+            _onEnemyHitPlayer.Raise((int)damage);
         }
     }
 }
