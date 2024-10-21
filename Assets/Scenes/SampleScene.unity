@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 107517968}
   - component: {fileID: 107517969}
   m_Layer: 0
-  m_Name: PlayerLegs
+  m_Name: Proto Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +455,9 @@ Transform:
   m_Children:
   - {fileID: 1072854629}
   - {fileID: 487042281}
+  - {fileID: 1883023107}
   - {fileID: 532650982}
+  - {fileID: 348414358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &107517966
@@ -777,7 +779,7 @@ GameObject:
   - component: {fileID: 143095592}
   - component: {fileID: 143095591}
   m_Layer: 0
-  m_Name: Top
+  m_Name: Torso Visuals
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1085,6 +1087,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331690846}
   m_CullTransparentMesh: 1
+--- !u!1 &348414357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348414358}
+  - component: {fileID: 348414360}
+  - component: {fileID: 348414359}
+  m_Layer: 0
+  m_Name: Player Listeners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &348414358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348414357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107517965}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &348414359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348414357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93ba61543949824db31c7cb89b4f009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _binding: 0
+  _disableAfterSubscribing: 0
+  _eventResponses: []
+--- !u!114 &348414360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348414357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30bb439e6d7dc94489cd1be18593b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _binding: 0
+  _disableAfterSubscribing: 0
+  _eventResponses:
+  - Delay: 0
+    _scriptableEvent: {fileID: 11400000, guid: eebecf39bfbdc064f8b1563cf5e017bc, type: 2}
+    _response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1883023108}
+          m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+          m_MethodName: OnDamaged
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Delay: 0
+    _scriptableEvent: {fileID: 11400000, guid: 1d8fd09d613f5454284a4874f052d918, type: 2}
+    _response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1883023108}
+          m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+          m_MethodName: TakeDmage
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &358294231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1812,7 @@ GameObject:
   - component: {fileID: 487042281}
   - component: {fileID: 487042282}
   m_Layer: 0
-  m_Name: PlayerTorso
+  m_Name: Player Torso
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1758,10 +1857,8 @@ GameObject:
   m_Component:
   - component: {fileID: 532650982}
   - component: {fileID: 532650983}
-  - component: {fileID: 532650986}
-  - component: {fileID: 532650985}
   m_Layer: 0
-  m_Name: ProtoPlayer
+  m_Name: Player Inputs
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1779,8 +1876,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1883023107}
+  m_Children: []
   m_Father: {fileID: 107517965}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &532650983
@@ -1802,70 +1898,6 @@ MonoBehaviour:
   tapTreshold: 0.2
   movementKeyTimer: 0
   isMovementKeyHeld: 0
---- !u!114 &532650985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532650981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93ba61543949824db31c7cb89b4f009, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _binding: 0
-  _disableAfterSubscribing: 0
-  _eventResponses: []
---- !u!114 &532650986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532650981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30bb439e6d7dc94489cd1be18593b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _binding: 0
-  _disableAfterSubscribing: 0
-  _eventResponses:
-  - Delay: 0
-    _scriptableEvent: {fileID: 11400000, guid: eebecf39bfbdc064f8b1563cf5e017bc, type: 2}
-    _response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1883023108}
-          m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
-          m_MethodName: OnDamaged
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - Delay: 0
-    _scriptableEvent: {fileID: 11400000, guid: 1d8fd09d613f5454284a4874f052d918, type: 2}
-    _response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1883023108}
-          m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
-          m_MethodName: TakeDmage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &573985588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2668,7 @@ GameObject:
   - component: {fileID: 748335758}
   - component: {fileID: 748335757}
   - component: {fileID: 748335761}
+  - component: {fileID: 748335762}
   m_Layer: 0
   m_Name: ProtoEnemy
   m_TagString: Untagged
@@ -2741,11 +2774,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f185e7173476824081b725c712dedc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   damage: 5
   speed: 2
   _roundMultiplier: {fileID: 11400000, guid: a499e7268a075114dbecd74c7cdd8eb0, type: 2}
   _onEnemyHitPlayer: {fileID: 11400000, guid: eebecf39bfbdc064f8b1563cf5e017bc, type: 2}
   _playerPos: {fileID: 11400000, guid: b16255385fbfabc4e9f39f8a8ee1c7a9, type: 2}
+  _retaliate: {fileID: 11400000, guid: 80e16ccb52bef94469554e387804b332, type: 2}
+--- !u!54 &748335762
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748335756}
+  serializedVersion: 4
+  m_Mass: 5
+  m_Drag: 5
+  m_AngularDrag: 5
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!1 &772277796
 GameObject:
   m_ObjectHideFlags: 0
@@ -3480,7 +3542,7 @@ GameObject:
   - component: {fileID: 1072854632}
   - component: {fileID: 1072854631}
   m_Layer: 0
-  m_Name: Bottom
+  m_Name: Bottom Visuals
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6087,7 +6149,7 @@ GameObject:
   - component: {fileID: 1883023110}
   - component: {fileID: 1883023109}
   m_Layer: 0
-  m_Name: PlayerResources
+  m_Name: Player Resources
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6101,12 +6163,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883023106}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 532650982}
+  m_Father: {fileID: 107517965}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1883023108
 MonoBehaviour:
@@ -6223,6 +6285,8 @@ MonoBehaviour:
   _energyMax: {fileID: 11400000, guid: 3701dd8d1e04eaf4589cd93767b36ebd, type: 2}
   _energyCurrent: {fileID: 11400000, guid: 5cdec905e696e7a49aabbe3cb5df3f65, type: 2}
   _energyRegen: {fileID: 11400000, guid: e7aa230383ac8df47b5b91db295b06a1, type: 2}
+  regenInterval: 1
+  regentimer: 0
 --- !u!1 &1913753976
 GameObject:
   m_ObjectHideFlags: 0

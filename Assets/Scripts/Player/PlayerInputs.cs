@@ -21,7 +21,7 @@ public class PlayerInputs : GameBehaviour
     private void Update()
     {
         // Movement inputs
-        _movementInput.Value = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        _movementInput.Value = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
         // Tap detection
         if (_movementInput.Value.magnitude > 0) //If detects any movement input

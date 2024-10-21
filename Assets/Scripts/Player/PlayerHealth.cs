@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerHealth : GameBehaviour
 {
@@ -37,8 +38,8 @@ public class PlayerHealth : GameBehaviour
     {
         if(_healthCurrent < _healthMax && !isDead)
         {
-
             HealthRegen();
+            
         }
     }
 

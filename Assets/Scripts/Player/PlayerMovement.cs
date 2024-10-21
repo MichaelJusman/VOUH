@@ -167,7 +167,7 @@ public class PlayerMovement : GameBehaviour
 
             _isDashing = true;
             dashCoroutine = StartCoroutine(Dash());
-            _energy.Value -= _dashCost;
+            _energy.Add(-_dashCost);
         }
 
         //dash anim
@@ -187,7 +187,7 @@ public class PlayerMovement : GameBehaviour
             slideTimeElapsed += Time.deltaTime;
             if (slideTimeElapsed >= _kineticSlideInterval && _speedCurrent > 0)
             {
-                _energy.Value += _slideEnergyRegen;
+                _energy.Add(_slideEnergyRegen);
                 slideTimeElapsed = 0f;  // Reset timer after regenerating energy
             }
 
@@ -225,7 +225,7 @@ public class PlayerMovement : GameBehaviour
             //: transform.forward;
             _isTapping = true;
             tapCoroutine = StartCoroutine(Tap());
-            _energy.Value -= _tapCost;
+            _energy.Add(-_tapCost);
         }
     }
     void HandleTap()

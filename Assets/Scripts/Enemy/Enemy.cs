@@ -1,4 +1,5 @@
 using Obvious.Soap;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 public abstract class Enemy : GameBehaviour
 {
+    [SerializeField] protected float health;
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] private FloatVariable _roundMultiplier;
@@ -15,6 +17,7 @@ public abstract class Enemy : GameBehaviour
 
     [Header("Player References")]
     [SerializeField] private Vector3Variable _playerPos;
+    [SerializeField] private FloatVariable _retaliate;
     protected Vector3 direction;
 
     private void Update()
@@ -37,6 +40,26 @@ public abstract class Enemy : GameBehaviour
         {
             Debug.Log("player collided with enemy");
             _onEnemyHitPlayer.Raise((int)damage);
+            TakeDamage();
         }
+    }
+
+    void TakeDamage()
+    {
+        health -= _retaliate.Value;
+
+        if (health > 0)
+        {
+            //Call the number text spawner
+        }
+        else
+        {
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        Destroy(gameObject);
     }
 }
