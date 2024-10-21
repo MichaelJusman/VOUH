@@ -48,6 +48,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private FloatVariable _armorPerAudacity;
     [SerializeField] private FloatVariable _shieldKnockbackPerAudacity;
 
+    [Header("Current Resources")]
+    [SerializeField] private FloatVariable _currentHealth;
+    [SerializeField] private FloatVariable _currentEnergy;
+    [SerializeField] private FloatVariable _currentMana;
+    [SerializeField] private FloatVariable _currentAmmo;
+
 
     private void Start()
     {
