@@ -20,6 +20,5 @@ public class PickupSpawner : GameBehaviour
     private void OnEnemyDied(Enemy enemy)
     {
         Instantiate(pickups[Random.Range(0, pickups.Length)], enemy.transform.position, Quaternion.identity);
-
     }
 }

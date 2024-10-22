@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Pickup : GameBehaviour
 {
+    
+    
     protected virtual void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
