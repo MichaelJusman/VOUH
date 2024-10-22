@@ -16,6 +16,7 @@ public class PlayerMana : GameBehaviour
     {
         _manaCurrent.Value = _manaMax;
         _manaCurrent.OnValueChanged += OnManaChanged;
+        _manaCurrent.MinMax = new Vector2(0, _manaMax);
     }
 
     private void OnDestroy()

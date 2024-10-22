@@ -27,6 +27,7 @@ public class PlayerHealth : GameBehaviour
     {
         _healthCurrent.Value = _healthMax;
         _healthCurrent.OnValueChanged += OnHealthChanged;
+        _healthCurrent.MinMax = new Vector2(0, _healthMax);
     }
 
     private void OnDestroy()

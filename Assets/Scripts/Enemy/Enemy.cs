@@ -11,14 +11,21 @@ public abstract class Enemy : GameBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] private FloatVariable _roundMultiplier;
+    [SerializeField] private ScriptableListEnemy _scriptableListEnemy;
 
     [Header("Events")]
     [SerializeField] private ScriptableEventInt _onEnemyHitPlayer;
+    [SerializeField] private ScriptableEventNoParam _onEnemyDie;
 
     [Header("Player References")]
     [SerializeField] private Vector3Variable _playerPos;
     [SerializeField] private FloatVariable _retaliate;
     protected Vector3 direction;
+
+    private void Start()
+    {
+        _scriptableListEnemy.Add(this);
+    }
 
     private void Update()
     {
@@ -60,6 +67,7 @@ public abstract class Enemy : GameBehaviour
 
     private void OnDeath()
     {
+        _scriptableListEnemy.Remove(this);
         Destroy(gameObject);
     }
 }

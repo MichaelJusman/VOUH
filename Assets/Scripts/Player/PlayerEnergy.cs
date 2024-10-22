@@ -16,6 +16,7 @@ public class PlayerEnergy : GameBehaviour
     {
         _energyCurrent.Value = _energyMax;
         _energyCurrent.OnValueChanged += OnEnergyChanged;
+        _energyCurrent.MinMax = new Vector2(0, _energyMax);
     }
 
     private void OnDestroy()

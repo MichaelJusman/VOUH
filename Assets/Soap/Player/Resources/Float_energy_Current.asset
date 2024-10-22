@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9978ce9c8bdc724896114c9952c52ea, type: 3}
-  m_Name: _energyRegen
+  m_Name: Float_energy_Current
   m_EditorClassIdentifier: 
   TagIndex: 0
   Description: 
-  _guid: e7aa230383ac8df47b5b91db295b06a1
+  _guid: 5cdec905e696e7a49aabbe3cb5df3f65
   _saveGuid: 0
-  _value: 1
+  _value: 0
   _debugLogEnabled: 0
   _saved: 0
   _defaultValue: 0
   _resetOn: 0
   _runtimeValue: 0
-  _isClamped: 0
+  _isClamped: 1
   _minMax: {x: 0, y: 3.4028235e+38}

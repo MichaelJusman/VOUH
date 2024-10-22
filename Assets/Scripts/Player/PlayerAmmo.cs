@@ -13,6 +13,7 @@ public class PlayerAmmo : GameBehaviour
     {
         _ammoCurrent.Value = _ammoMax;
         _ammoCurrent.OnValueChanged += OnAmmoChanged;
+        _ammoCurrent.MinMax = new Vector2(0, _ammoMax);
     }
 
     private void OnDestroy()
