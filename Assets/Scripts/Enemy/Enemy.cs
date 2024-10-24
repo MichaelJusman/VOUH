@@ -47,15 +47,29 @@ public abstract class Enemy : GameBehaviour
         {
             Debug.Log("player collided with enemy");
             _onEnemyHitPlayer.Raise((int)damage);
-            TakeDamage();
+            TakeRetaliateDamage();
         }
     }
 
-    void TakeDamage()
+    public void TakeRetaliateDamage()
     {
         health -= _retaliate.Value;
 
         if (health > 0)
+        {
+            //Call the number text spawner
+        }
+        else
+        {
+            OnDeath();
+        }
+    }
+
+    public void TakeDamage(float damage, bool canCrit)
+    {
+        health -= damage;
+
+        if(health > 0)
         {
             //Call the number text spawner
         }

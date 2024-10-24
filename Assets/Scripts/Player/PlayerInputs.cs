@@ -17,6 +17,11 @@ public class PlayerInputs : GameBehaviour
     [SerializeField] private float movementKeyTimer = 0;
     [SerializeField] private bool isMovementKeyHeld = false;
 
+    [Header("Action")]
+    [SerializeField] private BoolVariable _primaryFireInput;
+    [SerializeField] private BoolVariable _alternativeFireInput;
+
+
 
     private void Update()
     {
@@ -55,6 +60,12 @@ public class PlayerInputs : GameBehaviour
 
         //Slide input
         _slideInput.Value = Input.GetKey(KeyCode.LeftShift);
+
+        //Primary Fire
+        _primaryFireInput.Value = Input.GetKeyDown(KeyCode.Mouse0);
+
+        //Alt Fire
+        _alternativeFireInput.Value = Input.GetKeyDown(KeyCode.Mouse1);
         
     }
 }
