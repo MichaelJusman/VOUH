@@ -5,14 +5,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum WeaponType { Health, Energy, Mana, Ammo, Default }
+public enum WeaponState { Unequiped, Ready, Gap, Reloading, Resourceless }
 public abstract class Weapon : GameBehaviour
 {
     [Header("Weapon Info")]
     public WeaponData weaponData;
+    public WeaponState weaponState;
+    public bool isEquiped;
     public int currentClip;
     public bool isReloading = false;
     public GameObject mainProjectile;
     public GameObject secondary;
+    public Transform firingPoint;
+    public float lastFireTime;
 
     [Header("Weapon Leveling")]
     public int currentLevel;
@@ -21,8 +26,7 @@ public abstract class Weapon : GameBehaviour
     public float killMultiplier;
 
     [Header("Weapon Inputs")]
-    [SerializeField] private BoolVariable _primaryInput;
-    [SerializeField] private BoolVariable _altInputInput;
+    [SerializeField] protected BoolVariable _reloadInput;
 
     [Header("Resources Reference")]
     [SerializeField] private FloatVariable _health;
@@ -32,15 +36,20 @@ public abstract class Weapon : GameBehaviour
 
     private void Update()
     {
+        StateLogic();
+        
         if(!isReloading && currentClip > 0)
         {
-            if(_primaryInput) { PrimaryFire(); }
-            if(_altInputInput) { AlternativeFire(); }
+            FiringBehaviour();
         }
     }
 
+    protected abstract void StateLogic();
+
+    protected abstract void FiringBehaviour(); //
+
     protected abstract void PrimaryFire();
-    protected abstract void AlternativeFire();
+    protected virtual void AlternativeFire() { }
 
     protected virtual void Reload()
     {

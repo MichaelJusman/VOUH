@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
     [Header("Weapon Info")]
     public string weaponName;
     public string weaponDescription;
+    public GameObject weaponPrefab;
 
     [Header("Weapon Stats")]
     public float damage;
