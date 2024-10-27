@@ -7,12 +7,17 @@ public class WeaponManager : MonoBehaviour
     public WeaponData[] weaponSlots = new WeaponData[3];  // Slot 1, 2, 3
     private int currentWeaponIndex = 0;
 
+    [SerializeField] private Collider pickupCollider;
+    [SerializeField] private Transform weaponTransform;
+
+    [SerializeField] private WeaponDrop pendingWeapon;
+
     void Update()
     {
         HandleWeaponSwitching();
         HandleFiring();
     }
-
+    
     void HandleWeaponSwitching()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) { currentWeaponIndex = 0; }
@@ -34,6 +39,12 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) { FirePrimary(); }
         if (Input.GetMouseButtonDown(1)) { FireSecondary(); }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //Detect collision with weapon drop, put into PendingWeapon, when pressing F, equip the weapon: (if slot 1 and 2 is empty, fill slot 1, if slot 1 is filled, fill slot 2. If both slots are filled, replace currently equiped weapon slot, except for weapon slot 3, where the default weapon exist and cannot be replace. Incase of picking up weapon while on slot 3 with slot 1 & 2 filled, swap slot 1.
+    }
+
 
     void FirePrimary()
     {
